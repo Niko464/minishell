@@ -18,13 +18,15 @@ void handle_redirect_output(main_info_t *infos, char **command,
     if (check_errors_redirect_output(command, nbr_args, expr_position) != 0) {
         return;
     }
+    int save_stdout = dup(1);
+    close(fileno(stdout));
     int output_file = open(command[2], O_CREAT | O_WRONLY | O_TRUNC, 0644);
     if (output_file < 0)
         return;
-    int saved_stdout = dup(1);
     dup2(output_file, 1);
-    my_putstr("TEST");
-    dup2(saved_stdout, output_file);
-    my_putstr("SEC TEST");
-    close(output_file);
+    char **new_command = remove_arg_from_command(command, 1);
+    new_command = remove_arg_from_command(new_command, 1);
+    if (is_a_known_command(infos, new_command) == 0)
+        handle_other_commands(infos, new_command);
+    dup2(save_stdout, 1);
 }

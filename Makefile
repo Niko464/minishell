@@ -32,7 +32,8 @@ SRC		=		$(SRC_DIR)/project.c											\
 				$(SRC_DIR)/multiple_command_handling/handle_list_of_commands.c	\
 				$(SRC_DIR)/expression_handling/expression_handling.c			\
 				$(SRC_DIR)/expression_handling/has_expression.c					\
-				$(SRC_DIR)/expression_handling/errors/error_redirect_output.c
+				$(SRC_DIR)/expression_handling/errors/error_redirect_output.c	\
+				$(SRC_DIR)/utils.c
 
 DIR_INCLUDE =	include
 NAME_LIB =		libmy.a

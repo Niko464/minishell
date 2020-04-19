@@ -11,10 +11,10 @@
 int check_errors_redirect_output(char **command, int nbr_args,
     int expr_position)
 {
-    if (nbr_args > 3) {
+    /*if (nbr_args > 3) {
         my_putstr("Ambiguous output redirect.\n");
         return (1);
-    } else if (expr_position == 0 && nbr_args == 1) {
+    } else */if (expr_position == 0 && nbr_args == 1) {
         my_putstr("Missing name for redirect.\n");
         return (1);
     }
