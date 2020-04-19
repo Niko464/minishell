@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** error_redirect_output.c
+** error_redirect_output_append.c
 ** File description:
 ** This file handles a list of commands
 */
@@ -8,7 +8,7 @@
 #include "my.h"
 #include "mini_shell.h"
 
-int check_errors_redirect_output(char **command, int nbr_args,
+int check_errors_redirect_output_append(char **command, int nbr_args,
     int expr_position)
 {
     if (expr_position == 0 && nbr_args == 1) {
