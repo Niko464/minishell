@@ -18,6 +18,13 @@ int does_command_contain_expression(main_info_t *infos, char **command)
             handle_redirect_output_append(infos, command, i);
             return (1);
         }
+        if (my_strcmp(command[i], "<") == 0) {
+            handle_redirect_input(infos, command, i);
+            return (1);
+        } else if (my_strcmp(command[i], "<<") == 0) {
+            handle_redirect_input_double(infos, command, i);
+            return (1);
+        }
     }
     return (0);
 }

@@ -75,14 +75,32 @@ void handle_exit(main_info_t *infos, char **word_array);
 char ***get_all_commands(char *line, int nbr_commands);
 void handle_list_of_commands(main_info_t *infos, char *line);
 int does_command_contain_expression(main_info_t *infos, char **command);
+
+/* Expression handlers */
+
 void handle_redirect_output(main_info_t *infos, char **command,
     int expr_position);
 void handle_redirect_output_append(main_info_t *infos, char **command,
     int expr_position);
+void handle_redirect_input(main_info_t *infos, char **command,
+    int expr_position);
+void handle_redirect_input_double(main_info_t *infos, char **command,
+    int expr_position);
+
+/* Expression errors */
+
 int check_errors_redirect_output(char **command,
     int nbr_args, int expr_position);
 int check_errors_redirect_output_append(char **command, int nbr_args,
     int expr_position);
+int check_errors_redirect_input(char **command, int nbr_args,
+    int expr_position);
+int check_errors_redirect_input_double(char **command, int nbr_args,
+    int expr_position);
+
+
+/* Expression utils */
+
 char **remove_arg_from_command(char **command, int index_to_rem);
 
 #endif
