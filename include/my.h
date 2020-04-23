@@ -16,10 +16,10 @@ typedef struct gnl {
 
 
 void my_putchar(char c);
-int my_put_nbr(int nb);
+void my_put_nbr(int nb);
+void my_putstr(char const *str);
 void my_swap(int *a, int *b);
 void my_perror(char *str);
-int my_putstr(char const *str);
 int my_strlen(char const *str);
 int my_getnbr(char const *str);
 void my_sort_int_array(int *tab, int size);
@@ -78,5 +78,15 @@ char *my_glue_cut_str(char *str1, char *str2, int start_str_2, int end_str2);
 int my_str_aplha_or_int(char *str);
 int my_char_is_alpha(char c);
 int my_char_is_int(char c);
+int my_printf(char const *format, ...);
+char *my_int_to_binary(int my_int);
+char *my_float_to_str(float my_float, int len_after_point);
+char *concat(char *s1, char *s2);
+float my_str_to_float(char *str);
+char *concat_with_char(char *s1, char *s2, char c);
+char *my_str_trim(char *str, int nbr_chars);
+
+#define ABS(X) ((X < 0) ? (-X) : (X))
+
 
 #endif

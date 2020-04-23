@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "mini_shell.h"
+#include <stdlib.h>
 #include <stdio.h>
 
 void handle_redirect_output(main_info_t *infos, char **command,
@@ -15,7 +16,7 @@ void handle_redirect_output(main_info_t *infos, char **command,
     int nbr_args = 0;
     for (int i = 0; command[i] != 0; i++)
         nbr_args++;
-    if (check_errors_redirect_output(command, nbr_args, expr_position) != 0) {
+    if (check_errors_redirect_output(nbr_args, expr_position) != 0) {
         return;
     }
     int save_stdout = dup(1);
@@ -38,7 +39,7 @@ void handle_redirect_output_append(main_info_t *infos, char **command,
     int nbr_args = 0;
     for (int i = 0; command[i] != 0; i++)
         nbr_args++;
-    if (check_errors_redirect_output_append(command, nbr_args,
+    if (check_errors_redirect_output_append(nbr_args,
         expr_position) != 0) {
         return;
     }
@@ -76,16 +77,4 @@ void handle_redirect_input(main_info_t *infos, char **command,
     if (is_a_known_command(infos, new_command) == 0)
         handle_other_commands(infos, new_command);
     dup2(save_stdin, 0);
-}
-
-void handle_redirect_input_double(main_info_t *infos, char **command,
-    int expr_position)
-{
-    int nbr_args = 0;
-    for (int i = 0; command[i] != 0; i++)
-        nbr_args++;
-    if (check_errors_redirect_input_double(command, nbr_args,
-        expr_position) != 0) {
-        return;
-    }
 }

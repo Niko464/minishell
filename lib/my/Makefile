@@ -78,7 +78,10 @@ SRC_LIBRARY	=	$(SRC_DIR_LIB)/my_check_string_is_number.c					\
 				$(SRC_DIR_LIB)/my_put_unsigned_int.c						\
 				$(SRC_DIR_LIB)/my_int_to_binary.c							\
 				$(SRC_DIR_LIB)/my_float_to_str.c							\
-				$(SRC_DIR_LIB)/concat.c
+				$(SRC_DIR_LIB)/concat.c										\
+				$(SRC_DIR_LIB)/my_str_to_float.c							\
+				$(SRC_DIR_LIB)/concat_with_char.c							\
+				$(SRC_DIR_LIB)/my_str_trim.c
 
 
 OBJ_LIBRARY =	$(OBJ_DIR_LIB)/my_check_string_is_number.o					\
@@ -143,7 +146,10 @@ OBJ_LIBRARY =	$(OBJ_DIR_LIB)/my_check_string_is_number.o					\
 				$(OBJ_DIR_LIB)/my_put_unsigned_int.o						\
 				$(OBJ_DIR_LIB)/my_int_to_binary.o							\
 				$(OBJ_DIR_LIB)/my_float_to_str.o							\
-				$(OBJ_DIR_LIB)/concat.o
+				$(OBJ_DIR_LIB)/concat.o										\
+				$(OBJ_DIR_LIB)/my_str_to_float.o							\
+				$(OBJ_DIR_LIB)/concat_with_char.o							\
+				$(OBJ_DIR_LIB)/my_str_trim.o
 
 
 NAME_LIB =		libmy.a
@@ -159,13 +165,14 @@ compil_lib:		$(OBJ_LIBRARY)
 
 copy_headers:
 	@echo -e "${GREEN}[COPY] ${WHITE}Copying ${BLUE}${NAME_HEADER}${WHITE} to ${BLUE}places${WHITE}...${NC}"
+	@cp $(NAME_HEADER) ../../include
 
 
 move_libmy:
 	@mv $(NAME_LIB) ../..
 
 debug:
-	@gcc -g3 $(SRC_DIR_LIB)/*.c
+	@gcc -g3 $(SRC_DIR_LIB)/*.c -l m
 
 $(OBJ_DIR_LIB)%.o: $(SRC_DIR_LIB)%.c
 	@mkdir -p obj

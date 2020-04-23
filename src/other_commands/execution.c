@@ -15,11 +15,25 @@
 #include "my.h"
 #include "mini_shell.h"
 
-void execute_program(main_info_t *infos, char *found_path, char **word_array)
+void handle_execve_error(char *cmd_name)
 {
-    int exec_value = 0;
-    exec_value = execve(found_path, word_array, infos->envp);
-    if (exec_value == ENOEXEC) {
-        my_perror("Shit");
+    if (errno == ENOEXEC){
+        my_perror(cmd_name);
+        my_perror(": Exec format error. Binary file not executable.\n");
+        kill(getpid(), SIGKILL);
+        free(cmd_name);
+        return;
     }
+}
+
+int check_if_file_is_dir(char *path)
+{
+    DIR *dir = opendir(path);
+    if (dir != NULL) {
+        my_perror(path);
+        my_perror(": Permission denied.\n");
+        closedir(dir);
+        return (1);
+    }
+    return (0);
 }

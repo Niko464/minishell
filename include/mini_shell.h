@@ -71,8 +71,9 @@ void handle_setenv(main_info_t *infos, char **word_array);
 void handle_env(main_info_t *infos);
 void handle_cd(main_info_t *infos, char **word_array);
 void handle_exit(main_info_t *infos, char **word_array);
-
-void execute_program(main_info_t *infos, char *found_path, char **word_array);
+void handle_execve_error(char *cmd_name);
+int check_if_file_is_dir(char *path);
+void handle_signals(int status);
 
 /* Expression handlers */
 
@@ -88,16 +89,30 @@ void handle_redirect_input(main_info_t *infos, char **command,
 void handle_redirect_input_double(main_info_t *infos, char **command,
     int expr_position);
 
+/* Expression ' << ' Handler */
+
+int do_the_fork_redirect_left(main_info_t *infos, char *found_path,
+    char **word_array, int pipe_fd[2]);
+void execve_for_double_redirect_left(main_info_t *infos,
+    char *found_path, char **word_array, char **input);
+void search_program_redirect_left(main_info_t *infos, char **word_array,
+    char **input);
+void handle_command_redirect_left(main_info_t *infos, char **word_array,
+    char **input);
+void handle_redirect_input_double(main_info_t *infos, char **command,
+    int expr_position);
+char **get_redirect_input(char *end);
+char **get_return_and_seperate_char(char *str);
+void start_execution(main_info_t *infos, char *found_path,
+    char **word_array, int pipe_fd[2]);
+
 /* Expression errors */
 
-int check_errors_redirect_output(char **command,
-    int nbr_args, int expr_position);
-int check_errors_redirect_output_append(char **command, int nbr_args,
-    int expr_position);
+int check_errors_redirect_output(int nbr_args, int expr_position);
+int check_errors_redirect_output_append(int nbr_args, int expr_position);
 int check_errors_redirect_input(char **command, int nbr_args,
     int expr_position);
-int check_errors_redirect_input_double(char **command, int nbr_args,
-    int expr_position);
+int check_errors_redirect_input_double(int nbr_args, int expr_position);
 
 
 /* Expression utils */

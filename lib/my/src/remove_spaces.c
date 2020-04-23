@@ -63,9 +63,9 @@ char *my_remove_spaces(char *str)
             (found_letter == 1)) {
             special_check(str[i], result, counter);
             counter += 1;
+            result[counter] = '\0';
         }
     }
-    result[counter] = '\0';
     if (result[my_strlen(result) - 1] == ' ')
         result[my_strlen(result) - 1] = '\0';
     return result;

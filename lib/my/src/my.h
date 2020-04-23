@@ -82,6 +82,11 @@ int my_printf(char const *format, ...);
 char *my_int_to_binary(int my_int);
 char *my_float_to_str(float my_float, int len_after_point);
 char *concat(char *s1, char *s2);
+float my_str_to_float(char *str);
+char *concat_with_char(char *s1, char *s2, char c);
+char *my_str_trim(char *str, int nbr_chars);
+
+#define ABS(X) ((X < 0) ? (-X) : (X))
 
 
 #endif

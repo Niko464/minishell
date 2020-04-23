@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "math.h"
 
 void main(void)
 {

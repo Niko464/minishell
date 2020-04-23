@@ -8,8 +8,7 @@
 #include "my.h"
 #include "mini_shell.h"
 
-int check_errors_redirect_output(char **command, int nbr_args,
-    int expr_position)
+int check_errors_redirect_output(int nbr_args, int expr_position)
 {
     if (expr_position == 0 && nbr_args == 1) {
         my_perror("Missing name for redirect.\n");
