@@ -19,7 +19,7 @@ void handle_redirect_output(main_info_t *infos, char **command,
         return;
     }
     int save_stdout = dup(1);
-    close(fileno(stdout));
+    close(1);
     int output_file = open(command[expr_position + 1], O_CREAT |
         O_WRONLY | O_TRUNC, 0644);
     if (output_file < 0)
@@ -43,7 +43,7 @@ void handle_redirect_output_append(main_info_t *infos, char **command,
         return;
     }
     int save_stdout = dup(1);
-    close(fileno(stdout));
+    close(1);
     int output_file = open(command[expr_position + 1], O_CREAT |
         O_WRONLY | O_APPEND, 0644);
     if (output_file < 0)
@@ -66,7 +66,7 @@ void handle_redirect_input(main_info_t *infos, char **command,
         return;
     }
     int save_stdin = dup(0);
-    close(fileno(stdin));
+    close(0);
     int input_file = open(command[expr_position + 1], O_RDONLY);
     if (input_file < 0)
         return;

@@ -37,9 +37,17 @@ char ***get_all_commands(char *line, int nbr_commands)
 
 void handle_list_of_commands(main_info_t *infos, char *line)
 {
-    int nbr_commands = my_count_char(line, ';') + 1;
-    char ***list_of_commands = get_all_commands(line, nbr_commands);
+    int line_len = my_strlen(line);
+    int nbr_commands = my_count_char(line, ';');
+    char ***list_of_commands = NULL;
 
+    if (line_len - 1 != my_get_index_char(line, ';', nbr_commands))
+        nbr_commands++;
+    if (line[0] == ';') {
+        nbr_commands--;
+        line = my_cut_string(line, 1, line_len);
+    }
+    list_of_commands = get_all_commands(line, nbr_commands);
     for (int i = 0; i < nbr_commands; i++) {
         if (does_command_contain_expression(infos, list_of_commands[i]) == 0 &&
             is_a_known_command(infos, list_of_commands[i]) == 0)

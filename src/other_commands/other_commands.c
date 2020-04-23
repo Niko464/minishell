@@ -11,6 +11,7 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <signal.h>
+#include <errno.h>
 #include "my.h"
 #include "mini_shell.h"
 
@@ -58,7 +59,7 @@ void continue_check_for_programm_execution(main_info_t *infos,
 
     if (stat(found_path, &s) == 0 && (s.st_mode & S_IXUSR)) {
         if (fork() == 0) {
-            execve(found_path, word_array, infos->envp);
+            execute_program(infos, found_path, word_array);
         }
         while ((wpid = wait(&status)) > 0);
         handle_signals(status);

@@ -23,7 +23,7 @@ void handle_exit_with_args(main_info_t *infos, char **word_array)
             infos->return_value = return_value;
         else if (return_value == 256)
             infos->return_value = 0;
-        else if (return_value == 257)
+        if (return_value == 257)
             infos->return_value = 1;
         else
             infos->return_value = (return_value & 0xFF);

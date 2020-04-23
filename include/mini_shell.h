@@ -72,12 +72,13 @@ void handle_env(main_info_t *infos);
 void handle_cd(main_info_t *infos, char **word_array);
 void handle_exit(main_info_t *infos, char **word_array);
 
-char ***get_all_commands(char *line, int nbr_commands);
-void handle_list_of_commands(main_info_t *infos, char *line);
-int does_command_contain_expression(main_info_t *infos, char **command);
+void execute_program(main_info_t *infos, char *found_path, char **word_array);
 
 /* Expression handlers */
 
+char ***get_all_commands(char *line, int nbr_commands);
+void handle_list_of_commands(main_info_t *infos, char *line);
+int does_command_contain_expression(main_info_t *infos, char **command);
 void handle_redirect_output(main_info_t *infos, char **command,
     int expr_position);
 void handle_redirect_output_append(main_info_t *infos, char **command,

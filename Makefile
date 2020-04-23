@@ -28,6 +28,7 @@ SRC		=		$(SRC_DIR)/project.c											\
 				$(SRC_DIR)/env/unsetenv.c										\
 				$(SRC_DIR)/exit/exit.c											\
 				$(SRC_DIR)/other_commands/other_commands.c						\
+				$(SRC_DIR)/other_commands/execution.c							\
 				$(SRC_DIR)/paths.c												\
 				$(SRC_DIR)/multiple_command_handling/handle_list_of_commands.c	\
 				$(SRC_DIR)/expression_handling/expression_handling.c			\
