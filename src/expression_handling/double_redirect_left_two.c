@@ -14,11 +14,13 @@
 int do_the_fork_redirect_left(main_info_t *infos, char *found_path,
     char **word_array, int pipe_fd[2])
 {
+    int to_return = 0;
+
     if (fork() == 0) {
         dup2(pipe_fd[0], 0);
-        return execve(found_path, word_array, infos->envp);
+        to_return = execve(found_path, word_array, infos->envp);
     }
-    return (-1);
+    return (to_return);
 }
 
 void start_execution(main_info_t *infos, char *found_path,
@@ -34,7 +36,7 @@ void start_execution(main_info_t *infos, char *found_path,
         handle_execve_error(word_array[0]);
         return;
     }
-    while ((wpid = wait(&status)) > 0);
+    wait3(0, 0, NULL);
     handle_signals(status);
 }
 
@@ -43,7 +45,6 @@ void execve_for_double_redirect_left(main_info_t *infos,
 {
     struct stat s;
     int pipe_fd[2];
-
     pipe(pipe_fd);
     for (int i = 0; input[i] != 0; i++) {
         write(pipe_fd[1], input[i], my_strlen(input[i]));
@@ -64,7 +65,6 @@ void search_program_redirect_left(main_info_t *infos, char **word_array,
     char **input)
 {
     char *found_path = search_path(infos, word_array);
-
     if (my_strcmp(found_path, "N/A") != 0) {
         execve_for_double_redirect_left(infos, found_path, word_array, input);
     } else {
