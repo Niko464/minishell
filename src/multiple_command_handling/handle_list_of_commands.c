@@ -41,7 +41,8 @@ void handle_list_of_commands(main_info_t *infos, char *line)
     int nbr_commands = my_count_char(line, ';');
     char ***list_of_commands = NULL;
 
-    if (line_len - 1 != my_get_index_char(line, ';', nbr_commands))
+    if (line_len - 1 != my_get_index_char(line, ';', nbr_commands) ||
+        line_len == 1)
         nbr_commands++;
     if (line[0] == ';') {
         nbr_commands--;

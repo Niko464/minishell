@@ -88,6 +88,8 @@ void handle_redirect_input(main_info_t *infos, char **command,
     int expr_position);
 void handle_redirect_input_double(main_info_t *infos, char **command,
     int expr_position);
+void handle_pipe_redirect(main_info_t *infos, char **command,
+    int expr_position);
 
 /* Expression ' << ' Handler */
 
@@ -113,6 +115,7 @@ int check_errors_redirect_output_append(int nbr_args, int expr_position);
 int check_errors_redirect_input(char **command, int nbr_args,
     int expr_position);
 int check_errors_redirect_input_double(int nbr_args, int expr_position);
+int check_errors_pipe(int nbr_args, int expr_position);
 
 
 /* Expression utils */

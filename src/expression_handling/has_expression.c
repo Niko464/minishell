@@ -8,6 +8,17 @@
 #include "my.h"
 #include "mini_shell.h"
 
+int continue_command_contain_expression(main_info_t *infos, char **command)
+{
+    for (int i = 0; command[i] != 0; i++) {
+        if (my_strcmp(command[i], "|") == 0) {
+            handle_pipe_redirect(infos, command, i);
+            return (1);
+        }
+    }
+    return (0);
+}
+
 int does_command_contain_expression(main_info_t *infos, char **command)
 {
     for (int i = 0; command[i] != 0; i++) {
@@ -26,5 +37,5 @@ int does_command_contain_expression(main_info_t *infos, char **command)
             return (1);
         }
     }
-    return (0);
+    return (continue_command_contain_expression(infos, command));
 }

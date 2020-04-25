@@ -27,7 +27,6 @@ void start_execution(main_info_t *infos, char *found_path,
     char **word_array, int pipe_fd[2])
 {
     int status = 0;
-    int wpid;
     int exec_value = 84;
 
     exec_value = do_the_fork_redirect_left(infos, found_path,

@@ -37,8 +37,10 @@ SRC		=		$(SRC_DIR)/project.c											\
 				$(SRC_DIR)/expression_handling/errors/error_redirect_output_append.c	\
 				$(SRC_DIR)/expression_handling/errors/error_redirect_input.c		\
 				$(SRC_DIR)/expression_handling/errors/error_redirect_input_double.c	\
+				$(SRC_DIR)/expression_handling/errors/error_pipe.c					\
 				$(SRC_DIR)/expression_handling/double_redirect_left.c				\
 				$(SRC_DIR)/expression_handling/double_redirect_left_two.c			\
+				$(SRC_DIR)/expression_handling/pipe.c								\
 				$(SRC_DIR)/utils.c
 
 DIR_INCLUDE =	include
