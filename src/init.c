@@ -48,11 +48,5 @@ main_info_t *init_shell(char **envp)
     infos->last_dir = "";
     infos->return_value = 0;
     infos->is_path_unset = 0;
-    init_shell_follow_up(infos);
     return (infos);
-}
-
-void init_shell_follow_up(main_info_t *infos)
-{
-
 }

@@ -11,7 +11,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <dirent.h>
-
 #include "my.h"
 #include "mini_shell.h"
 
