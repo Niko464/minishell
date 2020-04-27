@@ -17,9 +17,9 @@
 
 void handle_execve_error(char *cmd_name)
 {
-    if (errno == ENOEXEC){
+    if (errno == ENOEXEC) {
         my_perror(cmd_name);
-        my_perror(": Exec format error. Binary file not executable.\n");
+        my_perror(": Exec format error. Wrong Architecture.\n");
         kill(getpid(), SIGKILL);
         free(cmd_name);
         return;
